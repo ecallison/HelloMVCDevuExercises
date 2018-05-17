@@ -1,0 +1,85 @@
+﻿@model List<HelloMVCDevuExercises.Models.Car>
+@{
+    ViewBag.Title = "Index";
+    var value = 1000;
+}
+
+@{ 
+    value += 1;
+}
+
+@{ 
+    var name = "Bob";
+    var day = DateTime.Now.DayOfWeek.ToString();
+    <p>Howdy, @name. Today is @day.</p>
+}
+
+@{ 
+    var productId = 123;
+    <p>Product Id: ACME@(productId)</p>
+    <p>Howdy, @name. Aren't @(day)s the best?</p>
+}
+
+<p>Value: @value.ToString("C")</p>
+<h1>@ViewBag.BobCreatedThisValue</h1>
+<h2>Bob changed this</h2>
+<p>Hello again!</p>
+
+@foreach (var car in Model)
+{
+    <p>@car.Id - @car.Make - @car.Model</p>
+}
+
+@helper pluralizeChildren(int childCount)
+{
+    @(childCount == 1 ? "child" : "children");
+}
+
+@{ 
+    var childCount = 2;
+    <p>I have @childCount @pluralizeChildren(@childCount).</p>
+}
+
+@helper pluralize(int amount, string singular, string plural)
+{ 
+    @(amount == 1 ? singular : plural)
+}
+
+@{ 
+    var miracleCount = 2;
+    <p>Mrs. President, there @pluralize(miracleCount, "is one miracle", "are " + miracleCount + " miracles") you must see.</p>
+}
+
+<p>
+    Mrs. President, there 
+    @if (miracleCount ==1)
+    {
+        <span>is one miracle</span>
+    }
+    else
+    {
+        <span>are @miracleCount miracles</span>
+    }
+    you must see.
+</p>
+
+<p>
+    @{ 
+        var test = false;
+        if(!test)
+        {
+            @: Display This @*This is the same as <p>Display This</p>*@
+            <span>
+                Now is the time for all good men and women to come to see these miracles.
+            </span>
+        }
+    }
+</p>
+
+@for(int i = 0; i < 10; i++)
+{
+    <p>@i</p>
+}
+
+<p>bob@@learnvisualstudio.net</p>
+<p>@@bobtabor</p>
